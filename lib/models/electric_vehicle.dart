@@ -1,5 +1,6 @@
 class ElectricVehicle {
   String? id;
+  String userId; // Añadimos el ID del usuario
   String model;
   String brand;
   double batteryCapacity;
@@ -9,6 +10,7 @@ class ElectricVehicle {
 
   ElectricVehicle({
     this.id,
+    required this.userId,
     required this.model,
     required this.brand,
     required this.batteryCapacity,
@@ -19,6 +21,7 @@ class ElectricVehicle {
 
   Map<String, dynamic> toMap() {
     return {
+      'userId': userId,
       'model': model,
       'brand': brand,
       'batteryCapacity': batteryCapacity,
@@ -31,12 +34,14 @@ class ElectricVehicle {
   factory ElectricVehicle.fromMap(Map<String, dynamic> map, String id) {
     return ElectricVehicle(
       id: id,
-      model: map['model'],
-      brand: map['brand'],
-      batteryCapacity: map['batteryCapacity'],
-      range: map['range'],
-      chargeLevel: map['chargeLevel'],
-      lastCharge: DateTime.parse(map['lastCharge']),
+      userId: map['userId'] ?? '',
+      model: map['model'] ?? '',
+      brand: map['brand'] ?? '',
+      batteryCapacity: (map['batteryCapacity'] ?? 0).toDouble(),
+      range: (map['range'] ?? 0).toDouble(),
+      chargeLevel: map['chargeLevel'] ?? 0,
+      lastCharge:
+          DateTime.parse(map['lastCharge'] ?? DateTime.now().toIso8601String()),
     );
   }
 }

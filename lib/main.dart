@@ -8,10 +8,11 @@ import 'screens/add_edit_vehicle_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,10 +29,10 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/login',
       routes: {
-        '/login': (context) => LoginScreen(),
+        '/login': (context) => const LoginScreen(),
         '/home': (context) => VehicleListScreen(),
-        '/add-vehicle': (context) => AddEditVehicleScreen(),
-        '/edit-vehicle': (context) => AddEditVehicleScreen(),
+        '/add-vehicle': (context) => const AddEditVehicleScreen(),
+        '/edit-vehicle': (context) => const AddEditVehicleScreen(),
       },
     );
   }
